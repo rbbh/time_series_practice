@@ -1,3 +1,7 @@
+import pandas as pd
+from statsmodels import datasets
+
+
 class DataLoader:
     """
     A class for loading multiple time series datasets.
@@ -6,45 +10,18 @@ class DataLoader:
     def __init__(self):
         pass
 
-    def load_csv(self, file_path):
+    def load_builtin_dataset(self, dataset_name):
         """
-        Load a time series dataset from a CSV file.
+        Load a built-in time series dataset from statsmodels.
 
         Args:
-            file_path (str): Path to the CSV file.
+            dataset_name (str): Name of the dataset to load (e.g., 'airline', 'sunspots').
 
         Returns:
-            pandas.DataFrame: Loaded dataset.
+            pandas.DataFrame or pandas.Series: Loaded dataset.
         """
-        import pandas as pd
-        return pd.read_csv(file_path)
+        if dataset_name not in datasets.__all__:
+            raise ValueError(f"Dataset '{dataset_name}' is not available in statsmodels.")
 
-    def load_excel(self, file_path, sheet_name=0):
-        """
-        Load a time series dataset from an Excel file.
-
-        Args:
-            file_path (str): Path to the Excel file.
-            sheet_name (int or str): Sheet name or index to load.
-
-        Returns:
-            pandas.DataFrame: Loaded dataset.
-        """
-        import pandas as pd
-        return pd.read_excel(file_path, sheet_name=sheet_name)
-
-    def load_from_database(self, connection_string, query):
-        """
-        Load a time series dataset from a database.
-
-        Args:
-            connection_string (str): Database connection string.
-            query (str): SQL query to fetch the data.
-
-        Returns:
-            pandas.DataFrame: Loaded dataset.
-        """
-        import pandas as pd
-        from sqlalchemy import create_engine
-        engine = create_engine(connection_string)
-        return pd.read_sql(query, engine)
+        data = datasets.get_rdataset(dataset_name).data
+        return data
