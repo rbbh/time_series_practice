@@ -1,3 +1,8 @@
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+from statsmodels.tsa.seasonal import seasonal_decompose
+
+
 class Preprocessor:
     """
     A class for preprocessing time series data, including splitting, normalization, and decomposition.
@@ -31,7 +36,6 @@ class Preprocessor:
         Returns:
             pandas.DataFrame: Normalized dataset.
         """
-        from sklearn.preprocessing import MinMaxScaler
         scaler = MinMaxScaler()
         normalized_data = scaler.fit_transform(data)
         return normalized_data
@@ -48,5 +52,4 @@ class Preprocessor:
         Returns:
             statsmodels.tsa.seasonal.DecomposeResult: Decomposition result.
         """
-        from statsmodels.tsa.seasonal import seasonal_decompose
         return seasonal_decompose(data, model=model, period=period)
