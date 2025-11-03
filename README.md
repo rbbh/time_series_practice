@@ -10,7 +10,12 @@ This repository is designed for teaching time series forecasting using Python. I
 ## Features
 - **ARIMA Integration**: Includes ARIMA implementation via Python and R integration.
 - **Preprocessing**: Tools for data normalization, decomposition, and splitting.
-- **Model Selection**: Support for ARIMA and other machine learning models.
+- **Model Selection**: Support for various time series forecasting models, including:
+  - **ARMA Model**: A statistical model combining autoregressive and moving average components, suitable for stationary time series.
+  - **ARIMA Model**: An extension of the ARMA model that includes differencing to handle non-stationary time series data.
+  - **RNN**: A neural network model designed for sequential data, processing one element at a time while maintaining a memory of previous elements.
+  - **GRU**: A variant of RNNs that uses gating mechanisms to efficiently capture dependencies in sequential data.
+  - **LSTM**: A type of recurrent neural network capable of learning long-term dependencies in sequential data.
 - **Training and Testing**: Classes for training and evaluating models.
 
 ## Repository Structure
@@ -75,6 +80,7 @@ Before installing the dependencies, ensure that R is installed on your system. Y
 - scikit-learn
 - statsmodels
 - rpy2
+- torch
 
 ## License
 This project is licensed under the MIT License.
