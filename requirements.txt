@@ -3,3 +3,4 @@ numpy
 scikit-learn
 statsmodels
 rpy2
+torch
